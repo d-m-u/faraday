@@ -8,7 +8,13 @@ module Faraday
     # Executes a block which should try to require and reference dependent
     # libraries
     def dependency(lib = nil)
-      lib ? require(lib) : yield
+      if lib
+        p "XXXX"
+        require(lib)
+      else
+        p "XXXX1"
+        yield
+      end
     rescue LoadError, NameError => e
       self.load_error = e
     end
